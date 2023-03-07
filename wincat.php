@@ -58,7 +58,7 @@
 		
 		<div class="WinSettingsSpace">
 			<div>
-				<div>Оконная система в браузере - Windows Alex. (с) 2023 г.</div>
+				<div>Оконная система в браузере - Windows Cat. (с) 2023 г.</div>
 			</div>
 		</div>
 		<div id="iMenuLoad">text.</div>
@@ -171,7 +171,6 @@ if (document.getElementById(iWindowMain) == undefined) {
 				document.addEventListener('mouseup', HoverExitUp);
 				function HoverExitUp() {
 					document.removeEventListener('mouseup', HoverExitUp);
-				//	console.log(iWin);
 					CloseWindow(iWin);
 					
 					iHoverExit = -1;
@@ -183,9 +182,6 @@ if (document.getElementById(iWindowMain) == undefined) {
 			
 			iSubMenu.style.display = 'none';
 
-			//	console.log(document.activeElement.id);
-
-//	.addEventListener('mousedown', function () {
 			e = event || window.event;
 			oRectWin = iWinSettingsExit.getBoundingClientRect();
 			
@@ -205,7 +201,6 @@ if (document.getElementById(iWindowMain) == undefined) {
 				iWinMv.style.opacity = '1.0';
 				
 			});
-		//	SetFirstWindow(iWin);
 		}
 	}(iWin);
 
@@ -377,7 +372,6 @@ setTimeout(() => {
 });
 
 // Главное меню.
-
 for (var i = 1; document.getElementById('iMenuN'+i) != undefined; ++i) {
 	var cMenu = document.getElementById('iMenuN'+i);
 	cMenu.onmouseover = function(i){
@@ -455,8 +449,8 @@ for (var i = 1; document.getElementById('iMenuN'+i) != undefined; ++i) {
 				iSubMenu.innerHTML += '<div id="iMenP2pp3">Свернуть все окна</div>';
 				iSubMenu.innerHTML += '<div id="iMenP2pp4">Во весь экран</div>';
 				
-				for (var iMpp = 1; iMpp <= 12; ++iMpp) {
-					if (iMpp == 5) {
+				for (var iMpp = 1; iMpp <= 9; ++iMpp) {
+					if (iMpp == 3) {
 						iSubMenu.innerHTML += '<div id="iMenP2pp'+(iMpp+4)+'" style="background: #87bbe6;" title="Выбран.">Окно '+iMpp+'</div>';
 					} else {
 						iSubMenu.innerHTML += '<div id="iMenP2pp'+(iMpp+4)+'">Окно '+iMpp+'</div>';
@@ -549,7 +543,6 @@ for (var i = 1; document.getElementById('iMenuN'+i) != undefined; ++i) {
 			iMenP3pp1.addEventListener('click', function () {
 				CreateWindow(3, 'Параметры удаления');
 
-			//	alert('Пока не реализовано.');
 			});			
 			iMenP3pp2.addEventListener('click', function () {
 				document.getElementById('iMenuHidden').style.display = 'none';
@@ -590,13 +583,6 @@ for (var i = 1; document.getElementById('iMenuN'+i) != undefined; ++i) {
 			iSubMenu.style.display = 'none';
 	}
 	}(i);
-
-/*	
-	cMenu.onmouseout = function(){
-	return function() {
-	//	document.getElementById('iSubMenu').style.display = 'none';
-	}
-	}();*/
 }
 	
 const iMenuN5 = document.getElementById('iMenuN5');
@@ -658,9 +644,9 @@ function WinStartMove() {
 		iWinMv.style.top = windowInnerHeight - (iWinMv.getBoundingClientRect().height/2) -iMinEdge + 'px';		
 }
 
-// появление Alex Windows.
+// главный элемент DOM, от которого появляется Windows Cat:
 const sTagAct = 'body';
-
+// появление Windows Cat.
 const cTag = document.getElementsByTagName(sTagAct)[0];
 cTag.addEventListener('mousemove', function () {
 	
