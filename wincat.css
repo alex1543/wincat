@@ -15,7 +15,7 @@ body {
 	transition: .3s all;
   
 	font-size: 115px;
-	color: #79e986;
+	color: #56a4f3;
 	text-shadow: 1px 0 1px #000, 0 1px 1px #000, -1px 0 1px #000, 0 -1px 1px #000;
 	text-align: center;
 
@@ -28,6 +28,7 @@ body {
 	font-size: 45px;
 	margin-left: 10px;
 	margin-top: -45px;
+	color: #0a7bee;
 }
 
 canvas {
