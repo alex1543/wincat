@@ -701,6 +701,7 @@ function FillDiv() {
 
 				if (iLoadPos >= 1500) {
 					iTableAuto.innerHTML = 'Данные не были получены за отведенное время (5 сек.). Проверьте связь в локальной сети. Повторите попытку позже. Обратитесь к системному администратору.';
+					iLoadStat.innerHTML = 'Статус: ошибка';
 				} else {
 					iLoadPos++;
 					LoadListDate();
