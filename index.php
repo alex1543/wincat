@@ -61,6 +61,18 @@
 				<div>Оконная система в браузере - Windows Cat. (с) 2023 г.</div>
 			</div>
 		</div>
+
+		<div class="WinSettingsSpace">
+			<div>
+				<iframe>test</iframe>
+				<div id="iTableAuto">
+				
+				test
+				</div>
+				<div id="iLoadStat">Статус: ожидание...</div>
+			</div>
+		</div>
+
 		<div id="iMenuLoad">text.</div>
 	</div>
 	
@@ -429,9 +441,9 @@ for (var i = 1; document.getElementById('iMenuN'+i) != undefined; ++i) {
 				alert('Пункт меню не реализован.');
 			});			
 			iMenP1pp7.addEventListener('click', function () {
-				document.getElementById('iMenuHidden').style.display = 'none';
+				CreateWindow(5, 'Информация из таблицы');
+				FillDiv();
 
-				alert('Пункт меню не реализован.');
 			});		
 			iMenP1pp8.addEventListener('click', function () {
 				document.getElementById('iMenuHidden').style.display = 'none';
@@ -661,6 +673,45 @@ cTag.addEventListener('mousemove', function () {
 			
 });
 
+
+// функции для заполнения окон.
+function FillDiv() {
+	iTableAuto.innerHTML = 'Loading...';
+	
+	var iframe = document.getElementsByTagName('iframe')[0];
+	iframe.src = './dync.php?select';
+	var innerDoc = iframe.contentDocument;
+	
+	var iLoadPos=0;
+	LoadListDate();
+	function LoadListDate() {
+		
+		setTimeout(() => {
+
+			var innerDoc = iframe.contentDocument;
+			if ((innerDoc != undefined) && (innerDoc.getElementById('iListStatus') != undefined)) {
+
+				var iTableGet = innerDoc.getElementById('iTableGet');
+				iTableAuto.innerHTML = iTableGet.innerHTML;
+				
+				innerDoc.getElementById('iListStatus').remove();
+				
+				iLoadStat.innerHTML = 'Статус: данные успешно получены из БД за '+iLoadPos+' мсек.';
+			} else {
+
+				if (iLoadPos >= 1500) {
+					iTableAuto.innerHTML = 'Данные не были получены за отведенное время (5 сек.). Проверьте связь в локальной сети. Повторите попытку позже. Обратитесь к системному администратору.';
+				} else {
+					iLoadPos++;
+					LoadListDate();
+				}
+		
+			}
+		
+		}, 1);	
+	}
+
+}
 </script>
 
 

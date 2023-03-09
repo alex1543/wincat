@@ -287,7 +287,8 @@ canvas:active {
 }
 .WinSettingsSpace {
 	display: none;
-	padding: 30px;
+	padding: 5%;
+    width: 95%;
 }
 .cSettingsOkCancel {
 	padding-top: 12px;
@@ -322,5 +323,38 @@ canvas:active {
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+}
+
+#iTableAuto {
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    height: 175px;
+    overflow-y: scroll;
+    margin-bottom: 12px;
+}
+#iLoadStat {
+    text-align: center;
+    font-size: 12px;	
+	font-weight: bold;
+	font-style: italic;
+}
+iframe {
+	visibility: hidden;
+	display: none;
+}
+
+table {
+	border-collapse: collapse;
+	border: 1px solid black;
+  
+	width: 100%;
+	text-align:center;
+	font-weight: bold;
+	background: #d5d8dc;
+}
+
+table td {
+  border: 1px solid black;
 }
 
