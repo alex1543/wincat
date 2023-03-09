@@ -69,7 +69,7 @@
 				
 				test
 				</div>
-				<div id="iLoadStat">Статус: ожидание...</div>
+				<div id="iLoadStat">error</div>
 			</div>
 		</div>
 
@@ -682,6 +682,7 @@ function FillDiv() {
 	iframe.src = './dync.php?select';
 	var innerDoc = iframe.contentDocument;
 	
+	iLoadStat.innerHTML = 'Статус: ожидание...';
 	var iLoadPos=0;
 	LoadListDate();
 	function LoadListDate() {
