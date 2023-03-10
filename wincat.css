@@ -358,3 +358,7 @@ table td {
   border: 1px solid black;
 }
 
+.star {
+	transform: rotate(-90deg);
+    padding: 3px;
+}

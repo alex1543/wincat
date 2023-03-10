@@ -12,6 +12,13 @@
 	<div id="iMenuHidden">
 		<div id="iMenuWindow">
 			<div id="iMenuN1">File</div><div id="iMenuN2">View</div><div id="iMenuN3">Edit</div><div id="iMenuN4">Settings</div><div id="iMenuN5">About</div>
+
+			<canvas id="iStar1" width="25" height="25"></canvas>
+			<canvas id="iStar2" width="25" height="25"></canvas>
+			<canvas id="iStar3" width="25" height="25"></canvas>
+			<canvas id="iStar4" width="25" height="25"></canvas>
+			<canvas id="iStar5" width="25" height="25"></canvas>
+
 			<div id="iSubMenu">none.</div>
 		</div>
 
@@ -714,6 +721,64 @@ function FillDiv() {
 	}
 
 }
+
+// создание звёзд через объекты.
+var StarObj = {
+
+	starID: 'iStar',
+	newStar: function() {
+		var iStar = document.getElementById(this.starID);
+		iStar.classList.add('star');
+		iStar.title = 'Скрыть';
+		var ctxStar = iStar.getContext('2d');  
+		function star(R, cX, cY, N) {
+		  ctxStar.beginPath();
+		  ctxStar.moveTo(cX + R,cY);
+		  for(var i = 1; i <= N * 2; i++)
+		  {
+			if(i % 2 == 0){
+			  var theta = i * (Math.PI * 2) / (N * 2);
+			  var x = cX + (R * Math.cos(theta));
+			  var y = cY + (R * Math.sin(theta));
+			} else {
+			  var theta = i * (Math.PI * 2) / (N * 2);
+			  var x = cX + ((R/2) * Math.cos(theta));
+			  var y = cY + ((R/2) * Math.sin(theta));
+			}
+
+			ctxStar.lineTo(x ,y);
+		  }
+		  ctxStar.closePath();
+		  ctxStar.stroke();
+		}	
+
+		star(12, 12, 13, 5);
+		iStar.addEventListener('mouseover', function () {
+			iSubMenu.style.display = 'none';
+
+			ctxStar.lineWidth = 2;
+			ctxStar.strokeStyle = '#fff';
+			ctxStar.stroke();
+		});
+		iStar.addEventListener('mouseout', function () {
+			ctxStar.lineWidth = 1;
+			ctxStar.strokeStyle = '#000';
+			ctxStar.stroke();
+		});
+		iStar.addEventListener('click', function () {
+			document.getElementById('iMenuHidden').style.display = 'none';
+		});
+
+	}
+}
+
+for (i = 1; i <= 5; ++i) {
+	var StarObj1 = Object.create(StarObj);
+	StarObj1.starID = 'iStar'+i;
+	StarObj1.newStar();	
+}
+
+
 </script>
 
 
