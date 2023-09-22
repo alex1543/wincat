@@ -603,7 +603,8 @@ function FillDiv() {
 	var innerDoc = iframe.contentDocument;
 	
 	iLoadStat.innerHTML = 'Статус: ожидание...';
-	var iLoadPos=0;
+	var msecIn = new Date().getTime();
+	var msecDiff = 0;
 	LoadListDate();
 	function LoadListDate() {
 		
@@ -617,15 +618,15 @@ function FillDiv() {
 				
 				innerDoc.getElementById('iListStatus').remove();
 				
-				iLoadStat.innerHTML = 'Статус: данные успешно получены из БД за '+iLoadPos+' мсек.';
+				iLoadStat.innerHTML = 'Статус: данные успешно получены из БД за '+msecDiff+' мсек.';
 			} else {
-
-				if (iLoadPos >= 1500) {
+				msecOut = new Date().getTime();
+				msecDiff = msecOut - msecIn;
+				if (msecDiff < 5000) {
+					LoadListDate();
+				} else {
 					iTableAuto.innerHTML = 'Данные не были получены за отведенное время (5 сек.). Проверьте связь в локальной сети. Повторите попытку позже. Обратитесь к системному администратору.';
 					iLoadStat.innerHTML = 'Статус: ошибка';
-				} else {
-					iLoadPos++;
-					LoadListDate();
 				}
 		
 			}
