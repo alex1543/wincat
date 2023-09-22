@@ -613,12 +613,20 @@ function FillDiv() {
 			var innerDoc = iframe.contentDocument;
 			if ((innerDoc != undefined) && (innerDoc.getElementById('iListStatus') != undefined)) {
 
-				var iTableGet = innerDoc.getElementById('iTableGet');
-				iTableAuto.innerHTML = iTableGet.innerHTML;
-				
+				var sStatus = innerDoc.getElementById('iListStatus').innerHTML;
 				innerDoc.getElementById('iListStatus').remove();
 				
-				iLoadStat.innerHTML = 'Статус: данные успешно получены из БД за '+msecDiff+' мсек.';
+				if (sStatus == 'good') {
+					var iTableGet = innerDoc.getElementById('iTableGet');
+					iTableAuto.innerHTML = iTableGet.innerHTML;
+					iLoadStat.innerHTML = 'Статус: данные успешно получены из БД за '+msecDiff+' мсек.';
+				}
+				if (sStatus == 'error') {
+					var iTableGet = innerDoc.getElementById('iTableGet');
+					iTableAuto.innerHTML = 'Проверьте настройки подключения к БД и повторите попытку. Подробности: '+iTableGet.innerHTML;
+					iLoadStat.innerHTML = 'Статус: ошибка подключения';
+					LoadListDate();
+				}
 			} else {
 				msecOut = new Date().getTime();
 				msecDiff = msecOut - msecIn;
@@ -626,7 +634,7 @@ function FillDiv() {
 					LoadListDate();
 				} else {
 					iTableAuto.innerHTML = 'Данные не были получены за отведенное время (5 сек.). Проверьте связь в локальной сети. Повторите попытку позже. Обратитесь к системному администратору.';
-					iLoadStat.innerHTML = 'Статус: ошибка';
+					iLoadStat.innerHTML = 'Статус: ошибка времени ожидания';
 				}
 		
 			}
